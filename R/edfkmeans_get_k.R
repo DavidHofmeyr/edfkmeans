@@ -32,7 +32,7 @@ get_k_grid <- function(X, maxk, nstart = 10, ngrid = 15){
   BICS <- matrix(0, maxk, ngrid)
   for(k in 2:maxk){
     km <- kmeans(X, k, nstart = nstart)
-    BICS[k,] <- km$tot.withinss/(seq(.31, 1.75, length = ngrid)^2*km$totss/n/d) + log(n)*edfkmeans_cpp(X, km$centers, km$cluster-1, km$size, km$tot.withinss, k, n, d, seq(.31, 1.75, length = ngrid)*sqrt(km$totss/n/d), ngrid)
+    BICS[k,] <- km$tot.withinss/(seq(.31, 1.75, length = ngrid)^2*km$totss/n/d) + log(n)*edfkmeans(X, km$centers, km$cluster-1, km$size, km$tot.withinss, k, n, d, seq(.31, 1.75, length = ngrid)*sqrt(km$totss/n/d), ngrid)
   }
   BICS[1,] <- km$totss/(seq(.31, 1.75, length = ngrid)^2*km$totss/n/d) + log(n)*d
   mins <- unlist(apply(BICS,2,function(x){
