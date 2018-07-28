@@ -14,7 +14,13 @@
 \examples{
 ## Generate data with 10 clusters in 10 dimensions
 data <- datagen_edfkmeans(1000, 10, 10, var = 3)
-
+  
+## The first three arguments are the number of data, dimensions and clusters respectively. The cluster overlap can be increased
+## by increasing the var argument (1.5 and 5 used in the paper). The mixing proportions can be varied by setting argument props to a positive value (1.5 and 2.5 used in the paper).
+## The individual cluster variances can be varied by setting the scale argument to a positive value (1.5 and 3 used in the paper). 
+## The cluster shapes can be varied by setting the argument v to a positive value (1.5 and 3 used in the paper).
+## Noise dimensions can be included using the noisedim argument (1 and 3 used in the paper).
+  
 ## Select the number of clusters to extract using the effective degrees of freedom based BIC estimates
 get_k_elbow(data$x, 30)
 get_k_grid(data$x, 30)
