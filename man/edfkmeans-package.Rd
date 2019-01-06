@@ -25,6 +25,9 @@ data <- datagen_edfkmeans(1000, 10, 10, var = 3)
 get_k_elbow(data$x, 30)
 get_k_grid(data$x, 30)
 }
+\references{
+Hofmeyr, D. (2018) Degrees of freedom and model selection for kmeans clustering, \emph{ArXiv preprint}, ArXiv 1806.02034.
+}
 \author{
 David P. Hofmeyr
 }
