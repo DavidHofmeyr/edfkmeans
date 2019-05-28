@@ -1,7 +1,7 @@
 Package: edfkmeans
 Type: Package
 Title: Degrees of freedom and model selection for k-means clustering
-Version: 1.0
+Version: 1.1
 Date: 2018-07-27
 Author: David Hofmeyr <dhofmeyr@sun.ac.za> [aut, cre]
 Maintainer: David Hofmeyr <dhofmeyr@sun.ac.za>
