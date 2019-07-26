@@ -12,7 +12,7 @@ arma::mat Pdist(arma::mat A, arma::mat B) {
   C.each_col() += An;
   C.each_row() += Bn.t();
   
-  return(C);
+  return C;
 }
 
 // [[Rcpp::export]]
@@ -59,7 +59,7 @@ NumericVector edfkmeans(arma::mat X, arma::mat M, arma::mat MU, IntegerVector as
   for(int i=0; i<nsig; i++){
     edfs[i] += nclust*d;
   }
-  return(edfs);
+  return edfs;
 }
 
 // [[Rcpp::export]]
