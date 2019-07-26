@@ -26,7 +26,8 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30)
   for(i in 1:ngrid) EDFS[,i] <- smoothed(EDFS[,i])
   BICS <- SS[1:maxk]%*%t(1/sigs^2) + EDFS*log(n*d)
   ks <- apply(BICS, 2, fmin)
-  list(ss = SS, bic = BICS, cluster = clusters, sigs = sigs, k = which.max(sapply(1:maxk, function(i) sum(ks==i))), edfs = edfs)
+  k <- ifelse(sum(ks==1)>=(ngrid*.6), 1, ifelse(sum(ks==maxk)>=(ngrid*.6), maxk, which.max(sapply(2:(maxk-1), function(i) sum(ks==i)))+1))
+  list(ss = SS, bic = BICS, cluster = clusters, sigs = sigs, k = k, edfs = edfs)
 }
 
 
