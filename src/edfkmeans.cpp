@@ -3,8 +3,6 @@
 
 using namespace Rcpp;
 
-// [[Rcpp::export]]
-
 arma::mat Pdist(arma::mat A, arma::mat B) {
   
   arma::colvec An =  sum(square(A),1);
