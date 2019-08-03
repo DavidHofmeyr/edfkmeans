@@ -14,7 +14,7 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30)
   SS <- c(sols[[2]]$totss, unlist(lapply(sols, function(l) l$tot.withinss)))
   c0 <- elbow(SS)
   if(ngrid==1) sigs <- c(sqrt(SS[c0]/nrow(X)/ncol(X)))
-  else sigs <- sqrt(seq(SS[c0]/2, 2.5*SS[c0], length = ngrid)/nrow(X)/ncol(X))
+  else sigs <- sqrt(seq(SS[c0]/2.5, 2.5*SS[c0], length = ngrid)/nrow(X)/ncol(X))
   EDFS <- matrix(0, maxk, ngrid)
   EDFS[1,] <- d
   for(k in 2:maxk){
@@ -26,7 +26,7 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30)
   for(i in 1:ngrid) EDFS[,i] <- smoothed(EDFS[,i])
   BICS <- SS[1:maxk]%*%t(1/sigs^2) + EDFS*log(n*d)
   ks <- apply(BICS, 2, fmin)
-  k <- ifelse(sum(ks==1)>=(ngrid*.6), 1, ifelse(sum(ks==maxk)>=(ngrid*.6), maxk, which.max(sapply(2:(maxk-1), function(i) sum(ks==i)))+1))
+  k <- ifelse(sum(ks==1)>=(ngrid*2/3), 1, ifelse(sum(ks==maxk)>=(ngrid*2/3), maxk, which.max(sapply(2:(maxk-1), function(i) sum(ks==i)))+1))
   list(ss = SS, bic = BICS, cluster = clusters, sigs = sigs, k = k, edfs = edfs)
 }
 
