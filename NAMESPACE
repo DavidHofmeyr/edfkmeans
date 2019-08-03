@@ -1,4 +1,5 @@
 useDynLib(edfkmeans, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
 importFrom(Rcpp, evalCpp)
+importFrom(KernSmooth, locpoly)
 export("kmeans_edf", "datagen_edfkmeans")
