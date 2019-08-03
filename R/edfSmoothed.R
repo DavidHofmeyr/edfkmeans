@@ -59,7 +59,5 @@ fmin = function(x){
 
 
 smoothed <- function(x){
-  fh <- function(h) sum((x-k_reg_loo(1:length(x), x, h, length(x), 1))^2)
-  h <- optimise(fh, c(.1, 10))$minimum
-  k_reg(1:length(x), x, h, length(x), 1)
-}
+  KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = 1)$y
+ }
