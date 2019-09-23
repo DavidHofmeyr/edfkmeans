@@ -1,4 +1,4 @@
-kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30) 
+kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, bw = 3) 
 {
   X <- t(t(X) - colMeans(X))
   sds <- sqrt(diag(cov(X)))
@@ -23,7 +23,7 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30)
     clusters[k,] <- sols[[k]]$cluster
   }
   edfs <- EDFS
-  for(i in 1:ngrid) EDFS[,i] <- smoothed(EDFS[,i])
+  for(i in 1:ngrid) EDFS[,i] <- smoothed(EDFS[,i], bw)
   BICS <- SS[1:maxk]%*%t(1/sigs^2) + EDFS*log(n*d)
   ks <- apply(BICS, 2, fmin)
   k <- ifelse(sum(ks==1)>=(ngrid*2/3), 1, ifelse(sum(ks==maxk)>=(ngrid*2/3), maxk, which.max(sapply(2:(maxk-1), function(i) sum(ks==i)))+1))
@@ -58,6 +58,6 @@ fmin = function(x){
 
 
 
-smoothed <- function(x){
-  KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = 1)$y
+smoothed <- function(x, bw){
+  KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = bw)$y
  }
