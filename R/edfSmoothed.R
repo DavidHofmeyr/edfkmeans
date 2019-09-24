@@ -1,4 +1,4 @@
-kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, bw = 3) 
+kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, bw = 5) 
 {
   X <- t(t(X) - colMeans(X))
   sds <- sqrt(diag(cov(X)))
