@@ -1,5 +1,5 @@
 datagen_edfkmeans <- function(n, d, k, var = 1.5, v = 0, scale = 0, noisedim = 0, props = 0){
-  X0 <- matrix(rnorm(n*d), n, d)*.8^var
+  X0 <- matrix(rnorm(n*d), n, d)*.8^var*sqrt(10)/sqrt(d)
   MU <- kmeans(X0, k, iter.max = 1)$centers
   X <- matrix(0, n, d)
   
