@@ -62,7 +62,7 @@ smoothed <- function(x){
   fun <- function(h){
     den = length(x)*density(1:length(x), bw = h, n = length(x), from = 1, to = length(x))$y*h
     denloo = den-1/sqrt(2*pi)
-    hy = KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = bw)$y*den/denloo-x/sqrt(2*pi)/denloo
+    hy = KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = h)$y*den/denloo-x/sqrt(2*pi)/denloo
     sum((x-hy)^2)
   }
   hh <- optimise(fun, c(.3, 10))$minimum
