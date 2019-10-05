@@ -48,7 +48,7 @@ elbow <- function(yvals){
 }
 
 fmin = function(x){
-  if(x[1]<min(x[-1])) 1
+  if(x[1]<=min(x[-1])) 1
   else{
     mins = which(sapply(2:(length(x)-1), function(i) x[i]<=(min(x[i+1], x[i-1]))))
     if(length(mins)>0) min(mins) + 1
@@ -65,6 +65,6 @@ smoothed <- function(x){
     hy = KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = h)$y*den/denloo-x/sqrt(2*pi)/denloo
     sum((x-hy)^2)
   }
-  hh <- optimise(fun, c(.3, 10))$minimum
+  hh <- optimise(fun, c(.5, 10))$minimum
   KernSmooth::locpoly(1:length(x), x, range.x = c(1, length(x)), gridsize = length(x), bandwidth = hh)$y
  }
