@@ -65,6 +65,6 @@ fmin = function(x){
 
 smoothed <- function(x){
   y <- suppressMessages(smooth.spline(1:length(x), x, cv = TRUE))
-  if(is.infinite(y$cv.crit)) smooth.spline(1:length(x), x, spar = 0.4)$y
+  if(y$cv.crit>1e+100) smooth.spline(1:length(x), x, spar = 0.4)$y
   else y$y
  }
