@@ -65,5 +65,6 @@ fmin = function(x){
 
 smoothed <- function(x){
   #smooth.spline(1:length(x), x, spar = 0.4)$y
-  supsmu(1:length(x), x)$y
+  #supsmu(1:length(x), x)$y
+  KernSmooth::locpoly(1:length(x), x, degree = 2, bandwidth = 2, gridsize = length(x))$y
 }
