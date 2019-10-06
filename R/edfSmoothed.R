@@ -64,5 +64,6 @@ fmin = function(x){
 
 
 smoothed <- function(x){
-  smooth.spline(1:length(x), x, spar = 0.4)$y
+  #smooth.spline(1:length(x), x, spar = 0.4)$y
+  supsmu(1:length(x), x)$y
 }
