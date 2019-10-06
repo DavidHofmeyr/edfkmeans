@@ -15,7 +15,7 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, sigs = NULL)
   if(is.null(sigs)){
     c0 <- elbow(SS)
     if(ngrid==1) sigs <- c(sqrt(SS[c0]/nrow(X)/ncol(X)))
-    else sigs <- sqrt(seq(SS[c0]/3, SS[c0]*3, length = ngrid)/nrow(X)/ncol(X))
+    else sigs <- sqrt(seq(SS[c0]/2, SS[1], length = ngrid)/nrow(X)/ncol(X))
   }
   else{
     ngrid = length(sigs)
@@ -32,7 +32,7 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, sigs = NULL)
   BICS <- SS[1:maxk]%*%t(1/sigs^2) + EDFS*log(n*d)
   ks <- apply(BICS, 2, fmin)
   k <- ifelse(sum(ks==1)>=(ngrid*2/3), 1, ifelse(sum(ks==maxk)>=(ngrid*2/3), maxk, which.max(sapply(2:(maxk-1), function(i) sum(ks==i)))+1))
-  list(ss = SS, bic = BICS, cluster = clusters, sigs = sigs, k = k, edfs = edfs)
+  list(ss = SS[1:maxk], bic = BICS, cluster = clusters, sigs = sigs, k = k, edfs = edfs)
 }
 
 
