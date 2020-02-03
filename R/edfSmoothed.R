@@ -43,10 +43,8 @@ kmeans_edf = function (X, maxk, nstart = 10, ngrid = 30, sigs = NULL, sigscale =
 elbow <- function(yvals){
   d <- length(yvals)
   angles <- sapply(1:(d - 1), function(i) {
-    a1 <- atan((i - 1)/(d - 1) * (yvals[1] - yvals[d])/(yvals[1] - 
-                                                          yvals[i]))
-    a2 <- atan((yvals[i] - yvals[d])/(yvals[1] - yvals[d]) * 
-                 (d - 1)/(d - i))
+    a1 <- atan((i - 1)/d * yvals[1]/(yvals[1] - yvals[i]))
+    a2 <- atan((yvals[i] - yvals[d])/yvals[1] * d/(d - i))
     return(a1 + a2)
   })
   which.min(angles)
