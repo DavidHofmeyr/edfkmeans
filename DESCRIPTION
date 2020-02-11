@@ -1,11 +1,11 @@
 Package: edfkmeans
 Type: Package
 Title: Degrees of freedom and model selection for k-means clustering
-Version: 1.1
+Version: 1.0
 Date: 2018-07-27
 Author: David Hofmeyr <dhofmeyr@sun.ac.za> [aut, cre]
 Maintainer: David Hofmeyr <dhofmeyr@sun.ac.za>
-Description: Estimates the number of clusters for kmeans using the method of Hofmeyr, D. "Degrees of freedom and model selection for kmeans clustering", ArXiv (2018). Uses a generalisation of Stein's lemma to approximate the effective degrees of freedom for kmeans. This is then used within BIC to estimate the number of clusters present in the data.
+Description: Uses a generalisation of Stein's lemma to approximate the effective degrees of freedom for kmeans. This is then used within BIC to select the number of clusters present in the data.
 License: GPL-3
-Depends: Rcpp (>= 0.12.16), KernSmooth
+Imports: Rcpp (>= 0.12.16)
 LinkingTo: Rcpp, RcppArmadillo
