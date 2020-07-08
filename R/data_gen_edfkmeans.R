@@ -81,6 +81,15 @@ kmeans_edf = function (X, kmax, nstart = 10, ntest = 1, extra = 1)
   k <- fmin(bic)
   list(ss = SS, bic = bic, cluster = clusters, edfs = edfs, edfs0 = edfsraw, k = k)
 }
+                                 
+fmin = function(x){
+  if(x[1]<min(x[-1])) 1
+  else{
+    mins = which(sapply(2:(length(x)-1), function(i) x[i]<=(min(x[i+1], x[i-1]))))
+    if(length(mins)>0) min(mins) + 1
+    else length(x)
+  } 
+}
 
 
 
